@@ -10,7 +10,7 @@ import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 
 public interface SearchRule {
-    public boolean canBeApplied(SearchOperation operation);
+    public boolean ruleCanBeApplied(SearchOperation operation);
 
     public Predicate applyRule(
             CriteriaBuilder cb,

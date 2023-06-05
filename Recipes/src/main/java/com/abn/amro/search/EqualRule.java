@@ -14,7 +14,7 @@ import jakarta.persistence.criteria.Root;
 public class EqualRule implements SearchRule {
 
     @Override
-    public boolean canBeApplied(SearchOperation operation) {
+    public boolean ruleCanBeApplied(SearchOperation operation) {
         return operation == SearchOperation.EQUAL;
     }
 

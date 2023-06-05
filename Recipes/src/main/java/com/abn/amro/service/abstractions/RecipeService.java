@@ -5,7 +5,6 @@ import com.abn.amro.dto.request.search.RecipeSearchDTO;
 import com.abn.amro.dto.response.CreateEntityResponseDTO;
 import com.abn.amro.dto.response.RecipeResponseDTO;
 import java.util.List;
-import org.springframework.data.domain.Page;
 
 public interface RecipeService {
     public List<RecipeResponseDTO> getRecipes(int page, int size);
@@ -18,5 +17,5 @@ public interface RecipeService {
 
     public RecipeResponseDTO getRecipeById(Long recipeId);
 
-    public Page<RecipeResponseDTO> findBySearchCriteria(RecipeSearchDTO searchRequest, int page, int size);
+    public List<RecipeResponseDTO> findBySearchCriteria(RecipeSearchDTO searchRequest, int page, int size);
 }

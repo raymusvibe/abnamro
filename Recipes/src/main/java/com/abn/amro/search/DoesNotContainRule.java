@@ -13,7 +13,7 @@ import jakarta.persistence.criteria.Root;
 
 public class DoesNotContainRule implements SearchRule {
     @Override
-    public boolean canBeApplied(SearchOperation operation) {
+    public boolean ruleCanBeApplied(SearchOperation operation) {
         return operation == SearchOperation.DOES_NOT_CONTAIN;
     }
 

@@ -17,7 +17,6 @@ import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -111,7 +110,7 @@ public class RecipeController {
             summary = "Searching recipes using provided criteria",
             responses = {@ApiResponse(responseCode = "200", description = "Successful search request")})
     @RequestMapping(method = RequestMethod.POST, path = "/search")
-    public Page<RecipeResponseDTO> searchRecipe(
+    public List<RecipeResponseDTO> searchRecipe(
             @RequestParam(name = "page", defaultValue = "0") @PositiveOrZero int page,
             @RequestParam(name = "size", defaultValue = "20") @Positive int size,
             @RequestBody @Valid RecipeSearchDTO searchRequest) {

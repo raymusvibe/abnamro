@@ -7,24 +7,11 @@ import com.abn.amro.search.abstractions.SearchRule;
 import jakarta.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 
 public class RecipeSpecification implements Specification<Recipe> {
     private final SearchCriteriaDTO searchCriteria;
     private static final List<SearchRule> searchRules = new ArrayList<>();
-
-    @Autowired
-    private ContainsRule containsSearchRule;
-
-    @Autowired
-    private DoesNotContainRule doesNotContainSearchRule;
-
-    @Autowired
-    private EqualRule equalSearchRule;
-
-    @Autowired
-    private NotEqualRule notEqualRule;
 
     public RecipeSpecification(SearchCriteriaDTO searchCriteria) {
         this.searchCriteria = searchCriteria;
@@ -36,7 +23,7 @@ public class RecipeSpecification implements Specification<Recipe> {
         String filterValue = searchCriteria.getValue().toString().toLowerCase();
         Join<Recipe, Ingredient> joinedRoot = recipeRoot.join("recipeIngredients", JoinType.INNER);
         return searchRules.stream()
-                .filter(searchRule -> searchRule.canBeApplied(searchCriteria.getOperation()))
+                .filter(searchRule -> searchRule.ruleCanBeApplied(searchCriteria.getOperation()))
                 .findFirst()
                 .map(searchRule ->
                         searchRule.applyRule(criteriaBuilder, searchCriteria, filterValue, recipeRoot, joinedRoot))
@@ -44,9 +31,9 @@ public class RecipeSpecification implements Specification<Recipe> {
     }
 
     private void populateRuleList() {
-        searchRules.add(containsSearchRule);
-        searchRules.add(doesNotContainSearchRule);
-        searchRules.add(equalSearchRule);
-        searchRules.add(notEqualRule);
+        searchRules.add(new ContainsRule());
+        searchRules.add(new DoesNotContainRule());
+        searchRules.add(new EqualRule());
+        searchRules.add(new NotEqualRule());
     }
 }

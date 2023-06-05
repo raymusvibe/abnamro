@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -83,7 +82,7 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public Page<RecipeResponseDTO> findBySearchCriteria(RecipeSearchDTO searchRequest, int page, int size) {
+    public List<RecipeResponseDTO> findBySearchCriteria(RecipeSearchDTO searchRequest, int page, int size) {
         RecipeSpecificationBuilder builder = new RecipeSpecificationBuilder();
         List<SearchCriteriaDTO> criteriaList = searchRequest.getSearchCriteria();
         if (criteriaList != null) {
@@ -93,8 +92,9 @@ public class RecipeServiceImpl implements RecipeService {
             });
         }
         Pageable pageRequest = PageRequest.of(page, size, Sort.by("name").ascending());
-        Page<Recipe> searchResult = recipeRepository.findAll(builder.build(), pageRequest);
-        return searchResult.map(this::mapRecipeToResponseDto);
+        List<Recipe> searchResult =
+                recipeRepository.findAll(builder.build(), pageRequest).getContent();
+        return searchResult.stream().map(this::mapRecipeToResponseDto).toList();
     }
 
     private Recipe findRecipeById(Long recipeId) {
