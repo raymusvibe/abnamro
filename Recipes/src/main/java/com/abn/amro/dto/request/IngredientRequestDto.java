@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class IngredientRequestDTO {
+public class IngredientRequestDto {
     @NotBlank
     @Size(max = 30, message = "Ingredient name too long")
     @Schema(description = "The name of the ingredient", example = "Egg")

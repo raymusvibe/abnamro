@@ -1,10 +1,10 @@
 package com.abn.amro.service;
 
-import com.abn.amro.dto.request.RecipeRequestDTO;
-import com.abn.amro.dto.request.search.RecipeSearchDTO;
-import com.abn.amro.dto.request.search.SearchCriteriaDTO;
-import com.abn.amro.dto.response.CreateEntityResponseDTO;
-import com.abn.amro.dto.response.RecipeResponseDTO;
+import com.abn.amro.dto.request.RecipeRequestDto;
+import com.abn.amro.dto.request.search.RecipeSearchDto;
+import com.abn.amro.dto.request.search.SearchCriteriaDto;
+import com.abn.amro.dto.response.CreateEntityResponseDto;
+import com.abn.amro.dto.response.RecipeResponseDto;
 import com.abn.amro.exceptions.NotFoundException;
 import com.abn.amro.model.Ingredient;
 import com.abn.amro.model.Recipe;
@@ -39,23 +39,23 @@ public class RecipeServiceImpl implements RecipeService {
     private final ModelMapper modelMapper;
 
     @Override
-    public List<RecipeResponseDTO> getRecipes(int page, int size) {
+    public List<RecipeResponseDto> getRecipes(int page, int size) {
         Pageable pageRequest = PageRequest.of(page, size);
         List<Recipe> recipes = recipeRepository.findAll(pageRequest).getContent();
         return recipes.stream().map(this::mapRecipeToResponseDto).toList();
     }
 
     @Override
-    public CreateEntityResponseDTO createRecipe(RecipeRequestDTO recipeDto) {
+    public CreateEntityResponseDto createRecipe(RecipeRequestDto recipeDto) {
         Recipe recipe = mapRecipeRequestDtoToEntity(recipeDto);
         Set<Ingredient> ingredients = getIngredientsByIds(recipeDto.getIngredientIds());
         recipe.setRecipeIngredients(ingredients);
         Recipe savedRecipe = recipeRepository.save(recipe);
-        return new CreateEntityResponseDTO(savedRecipe.getId());
+        return new CreateEntityResponseDto(savedRecipe.getId());
     }
 
     @Override
-    public RecipeResponseDTO updateRecipe(Long recipeId, RecipeRequestDTO recipeDto) {
+    public RecipeResponseDto updateRecipe(Long recipeId, RecipeRequestDto recipeDto) {
         Recipe recipe = findRecipeById(recipeId);
         Set<Ingredient> ingredients = getIngredientsByIds(recipeDto.getIngredientIds());
         recipe.setName(recipeDto.getName());
@@ -76,15 +76,15 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public RecipeResponseDTO getRecipeById(Long recipeId) {
+    public RecipeResponseDto getRecipeById(Long recipeId) {
         Recipe recipe = findRecipeById(recipeId);
         return mapRecipeToResponseDto(recipe);
     }
 
     @Override
-    public List<RecipeResponseDTO> findBySearchCriteria(RecipeSearchDTO searchRequest, int page, int size) {
+    public List<RecipeResponseDto> findBySearchCriteria(RecipeSearchDto searchRequest, int page, int size) {
         RecipeSpecificationBuilder specificationBuilder = new RecipeSpecificationBuilder();
-        List<SearchCriteriaDTO> criteriaList = searchRequest.getSearchCriteria();
+        List<SearchCriteriaDto> criteriaList = searchRequest.getSearchCriteria();
         if (criteriaList != null) {
             criteriaList.forEach(criteria -> {
                 criteria.setDataOption(searchRequest.getDataOption());
@@ -114,11 +114,11 @@ public class RecipeServiceImpl implements RecipeService {
                 .orElseThrow(() -> new NotFoundException("Ingredient id not found: " + id));
     }
 
-    private RecipeResponseDTO mapRecipeToResponseDto(Recipe recipe) {
-        return modelMapper.map(recipe, RecipeResponseDTO.class);
+    private RecipeResponseDto mapRecipeToResponseDto(Recipe recipe) {
+        return modelMapper.map(recipe, RecipeResponseDto.class);
     }
 
-    private Recipe mapRecipeRequestDtoToEntity(RecipeRequestDTO recipe) {
+    private Recipe mapRecipeRequestDtoToEntity(RecipeRequestDto recipe) {
         return modelMapper.map(recipe, Recipe.class);
     }
 }

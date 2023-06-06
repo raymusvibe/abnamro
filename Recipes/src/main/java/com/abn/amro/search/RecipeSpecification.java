@@ -1,6 +1,6 @@
 package com.abn.amro.search;
 
-import com.abn.amro.dto.request.search.SearchCriteriaDTO;
+import com.abn.amro.dto.request.search.SearchCriteriaDto;
 import com.abn.amro.model.Ingredient;
 import com.abn.amro.model.Recipe;
 import com.abn.amro.search.abstractions.SearchRule;
@@ -10,10 +10,10 @@ import java.util.List;
 import org.springframework.data.jpa.domain.Specification;
 
 public class RecipeSpecification implements Specification<Recipe> {
-    private final SearchCriteriaDTO searchCriteria;
+    private final SearchCriteriaDto searchCriteria;
     private static final List<SearchRule> searchRules = new ArrayList<>();
 
-    public RecipeSpecification(SearchCriteriaDTO searchCriteria) {
+    public RecipeSpecification(SearchCriteriaDto searchCriteria) {
         this.searchCriteria = searchCriteria;
         populateRuleList();
     }
@@ -23,7 +23,7 @@ public class RecipeSpecification implements Specification<Recipe> {
         String filterValue = searchCriteria.getValue().toString().toLowerCase();
         Join<Recipe, Ingredient> joinedRoot = recipeRoot.join("recipeIngredients", JoinType.INNER);
         return searchRules.stream()
-                .filter(searchRule -> searchRule.ruleCanBeApplied(searchCriteria.getOperation()))
+                .filter(searchRule -> searchRule.canRuleBeApplied(searchCriteria.getOperation()))
                 .findFirst()
                 .map(searchRule ->
                         searchRule.applyRule(criteriaBuilder, searchCriteria, filterValue, recipeRoot, joinedRoot))

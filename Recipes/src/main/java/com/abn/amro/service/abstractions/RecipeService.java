@@ -1,21 +1,21 @@
 package com.abn.amro.service.abstractions;
 
-import com.abn.amro.dto.request.RecipeRequestDTO;
-import com.abn.amro.dto.request.search.RecipeSearchDTO;
-import com.abn.amro.dto.response.CreateEntityResponseDTO;
-import com.abn.amro.dto.response.RecipeResponseDTO;
+import com.abn.amro.dto.request.RecipeRequestDto;
+import com.abn.amro.dto.request.search.RecipeSearchDto;
+import com.abn.amro.dto.response.CreateEntityResponseDto;
+import com.abn.amro.dto.response.RecipeResponseDto;
 import java.util.List;
 
 public interface RecipeService {
-    public List<RecipeResponseDTO> getRecipes(int page, int size);
+    public List<RecipeResponseDto> getRecipes(int page, int size);
 
-    public CreateEntityResponseDTO createRecipe(RecipeRequestDTO recipeRequest);
+    public CreateEntityResponseDto createRecipe(RecipeRequestDto recipeRequest);
 
-    public RecipeResponseDTO updateRecipe(Long recipeId, RecipeRequestDTO recipeRequest);
+    public RecipeResponseDto updateRecipe(Long recipeId, RecipeRequestDto recipeRequest);
 
     public void deleteRecipe(Long recipeId);
 
-    public RecipeResponseDTO getRecipeById(Long recipeId);
+    public RecipeResponseDto getRecipeById(Long recipeId);
 
-    public List<RecipeResponseDTO> findBySearchCriteria(RecipeSearchDTO searchRequest, int page, int size);
+    public List<RecipeResponseDto> findBySearchCriteria(RecipeSearchDto searchRequest, int page, int size);
 }

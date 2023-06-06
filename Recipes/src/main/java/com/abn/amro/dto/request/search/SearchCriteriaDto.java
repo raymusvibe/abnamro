@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
-public class SearchCriteriaDTO {
+public class SearchCriteriaDto {
     @Schema(
             description = "The parameter to search: name, numberOfServings, mealType, instructions or ingredient",
             example = "mealType")
@@ -21,7 +21,7 @@ public class SearchCriteriaDTO {
     @Schema(description = "The data option: ANY or ALL", example = "ALL", hidden = true)
     private DataOption dataOption;
 
-    public SearchCriteriaDTO(FilterKey filterKey, SearchOperation operation, Object value) {
+    public SearchCriteriaDto(FilterKey filterKey, SearchOperation operation, Object value) {
         this.filterKey = filterKey;
         this.operation = operation;
         this.value = value;

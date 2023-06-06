@@ -8,13 +8,13 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Data
-public class RecipeResponseDTO {
+public class RecipeResponseDto {
     private Long id;
     private String name;
     private String preparation;
 
     @JsonProperty("ingredients")
-    private Set<IngredientResponseDTO> recipeIngredients;
+    private Set<IngredientResponseDto> recipeIngredients;
 
     private int numberOfServings;
     private MealType mealType;

@@ -1,9 +1,9 @@
 package com.abn.amro.controller;
 
-import com.abn.amro.dto.request.RecipeRequestDTO;
-import com.abn.amro.dto.request.search.RecipeSearchDTO;
-import com.abn.amro.dto.response.CreateEntityResponseDTO;
-import com.abn.amro.dto.response.RecipeResponseDTO;
+import com.abn.amro.dto.request.RecipeRequestDto;
+import com.abn.amro.dto.request.search.RecipeSearchDto;
+import com.abn.amro.dto.response.CreateEntityResponseDto;
+import com.abn.amro.dto.response.RecipeResponseDto;
 import com.abn.amro.service.abstractions.RecipeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -40,7 +40,7 @@ public class RecipeController {
                 @ApiResponse(responseCode = "400", description = "Bad request"),
             })
     @RequestMapping(method = RequestMethod.GET)
-    public List<RecipeResponseDTO> getRecipes(
+    public List<RecipeResponseDto> getRecipes(
             @RequestParam(name = "page", defaultValue = "0") @PositiveOrZero int page,
             @RequestParam(name = "size", defaultValue = "20") @Positive int size) {
         logger.info("Getting recipes");
@@ -55,7 +55,7 @@ public class RecipeController {
                 @ApiResponse(responseCode = "404", description = "Recipe not found")
             })
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")
-    public RecipeResponseDTO getRecipe(
+    public RecipeResponseDto getRecipe(
             @Parameter(description = "Recipe id", required = true) @PathVariable(name = "id") @Positive Long id) {
         logger.info("Getting recipe by id {}", id);
         return recipeService.getRecipeById(id);
@@ -69,9 +69,9 @@ public class RecipeController {
             })
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public CreateEntityResponseDTO createRecipe(
+    public CreateEntityResponseDto createRecipe(
             @Parameter(description = "Properties of new recipe", required = true) @Valid @RequestBody
-                    RecipeRequestDTO request) {
+                    RecipeRequestDto request) {
         logger.info("Creating a new recipe {}", request);
         return recipeService.createRecipe(request);
     }
@@ -84,10 +84,10 @@ public class RecipeController {
                 @ApiResponse(responseCode = "404", description = "Recipe not found")
             })
     @RequestMapping(method = RequestMethod.PUT, path = "/{id}")
-    public RecipeResponseDTO updateRecipe(
+    public RecipeResponseDto updateRecipe(
             @Parameter(description = "Recipe id", required = true) @PathVariable(name = "id") @Positive Long id,
             @Parameter(description = "Properties of the recipe", required = true) @Valid @RequestBody
-                    RecipeRequestDTO updateRequest) {
+                    RecipeRequestDto updateRequest) {
         logger.info("Updating a recipe {}", updateRequest);
         return recipeService.updateRecipe(id, updateRequest);
     }
@@ -108,13 +108,15 @@ public class RecipeController {
 
     @Operation(
             summary = "Searching recipes using provided criteria",
-            responses = {@ApiResponse(responseCode = "200", description = "Successful search request"),
-                    @ApiResponse(responseCode = "400", description = "Bad request")})
+            responses = {
+                @ApiResponse(responseCode = "200", description = "Successful search request"),
+                @ApiResponse(responseCode = "400", description = "Bad request")
+            })
     @RequestMapping(method = RequestMethod.POST, path = "/search")
-    public List<RecipeResponseDTO> searchRecipe(
+    public List<RecipeResponseDto> searchRecipe(
             @RequestParam(name = "page", defaultValue = "0") @PositiveOrZero int page,
             @RequestParam(name = "size", defaultValue = "20") @Positive int size,
-            @RequestBody @Valid RecipeSearchDTO searchRequest) {
+            @RequestBody @Valid RecipeSearchDto searchRequest) {
         logger.info("Searching recipes using provided criteria {}", searchRequest);
         return recipeService.findBySearchCriteria(searchRequest, page, size);
     }

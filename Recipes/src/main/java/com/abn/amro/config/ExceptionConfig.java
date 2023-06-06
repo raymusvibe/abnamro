@@ -1,6 +1,6 @@
 package com.abn.amro.config;
 
-import com.abn.amro.dto.response.GenericResponseDTO;
+import com.abn.amro.dto.response.GenericResponseDto;
 import com.abn.amro.exceptions.NotFoundException;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -16,30 +16,30 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ExceptionConfig {
     @ExceptionHandler(NotFoundException.class)
     @ResponseBody
-    public ResponseEntity<GenericResponseDTO> handleNotFoundException(NotFoundException ex) {
+    public ResponseEntity<GenericResponseDto> handleNotFoundException(NotFoundException ex) {
         return buildResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler({DataIntegrityViolationException.class, InvalidDataAccessApiUsageException.class})
     @ResponseBody
-    public ResponseEntity<GenericResponseDTO> handleDataIntegrityViolationException(Exception ex) {
+    public ResponseEntity<GenericResponseDto> handleDataIntegrityViolationException(Exception ex) {
         return buildResponse(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseBody
-    public ResponseEntity<GenericResponseDTO> handleConstraintViolationException(ConstraintViolationException ex) {
+    public ResponseEntity<GenericResponseDto> handleConstraintViolationException(ConstraintViolationException ex) {
         return buildResponse(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseBody
-    public ResponseEntity<GenericResponseDTO> handleMethodArgumentNotValidException(
+    public ResponseEntity<GenericResponseDto> handleMethodArgumentNotValidException(
             MethodArgumentNotValidException ex) {
         return buildResponse(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
-    private ResponseEntity<GenericResponseDTO> buildResponse(String message, HttpStatus status) {
-        return new ResponseEntity<>(new GenericResponseDTO(message), status);
+    private ResponseEntity<GenericResponseDto> buildResponse(String message, HttpStatus status) {
+        return new ResponseEntity<>(new GenericResponseDto(message), status);
     }
 }

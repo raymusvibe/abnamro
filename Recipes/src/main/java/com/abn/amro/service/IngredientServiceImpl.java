@@ -1,8 +1,8 @@
 package com.abn.amro.service;
 
-import com.abn.amro.dto.request.IngredientRequestDTO;
-import com.abn.amro.dto.response.CreateEntityResponseDTO;
-import com.abn.amro.dto.response.IngredientResponseDTO;
+import com.abn.amro.dto.request.IngredientRequestDto;
+import com.abn.amro.dto.response.CreateEntityResponseDto;
+import com.abn.amro.dto.response.IngredientResponseDto;
 import com.abn.amro.exceptions.NotFoundException;
 import com.abn.amro.model.Ingredient;
 import com.abn.amro.repository.IngredientRepository;
@@ -28,21 +28,21 @@ public class IngredientServiceImpl implements IngredientService {
     private ModelMapper modelMapper;
 
     @Override
-    public List<IngredientResponseDTO> getIngredients(int page, int size) {
+    public List<IngredientResponseDto> getIngredients(int page, int size) {
         Pageable pageRequest = PageRequest.of(page, size);
         List<Ingredient> ingredients = ingredientRepository.findAll(pageRequest).getContent();
         return ingredients.stream().map(this::mapIngredientToResponseDto).toList();
     }
 
     @Override
-    public CreateEntityResponseDTO createIngredient(IngredientRequestDTO ingredientDTO) {
+    public CreateEntityResponseDto createIngredient(IngredientRequestDto ingredientDTO) {
         Ingredient ingredient = modelMapper.map(ingredientDTO, Ingredient.class);
         Ingredient savedIngredient = ingredientRepository.save(ingredient);
-        return new CreateEntityResponseDTO(savedIngredient.getId());
+        return new CreateEntityResponseDto(savedIngredient.getId());
     }
 
     @Override
-    public IngredientResponseDTO updateIngredient(Long ingredientId, IngredientRequestDTO ingredientDTO) {
+    public IngredientResponseDto updateIngredient(Long ingredientId, IngredientRequestDto ingredientDTO) {
         Ingredient ingredient = findIngredientById(ingredientId);
         ingredient.setIngredient(ingredientDTO.getIngredient());
         Ingredient savedIngredient = ingredientRepository.save(ingredient);
@@ -58,13 +58,13 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
-    public IngredientResponseDTO getIngredientById(Long ingredientId) {
+    public IngredientResponseDto getIngredientById(Long ingredientId) {
         Ingredient ingredient = findIngredientById(ingredientId);
-        return new IngredientResponseDTO(ingredientId, ingredient.getIngredient());
+        return new IngredientResponseDto(ingredientId, ingredient.getIngredient());
     }
 
-    private IngredientResponseDTO mapIngredientToResponseDto(Ingredient ingredient) {
-        return modelMapper.map(ingredient, IngredientResponseDTO.class);
+    private IngredientResponseDto mapIngredientToResponseDto(Ingredient ingredient) {
+        return modelMapper.map(ingredient, IngredientResponseDto.class);
     }
 
     private Ingredient findIngredientById(Long ingredientId) {

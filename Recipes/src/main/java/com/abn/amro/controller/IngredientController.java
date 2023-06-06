@@ -1,8 +1,8 @@
 package com.abn.amro.controller;
 
-import com.abn.amro.dto.request.IngredientRequestDTO;
-import com.abn.amro.dto.response.CreateEntityResponseDTO;
-import com.abn.amro.dto.response.IngredientResponseDTO;
+import com.abn.amro.dto.request.IngredientRequestDto;
+import com.abn.amro.dto.response.CreateEntityResponseDto;
+import com.abn.amro.dto.response.IngredientResponseDto;
 import com.abn.amro.service.abstractions.IngredientService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -36,7 +36,7 @@ public class IngredientController {
             description = "Get paged list of ingredients",
             responses = {@ApiResponse(responseCode = "200")})
     @RequestMapping(method = RequestMethod.GET)
-    public List<IngredientResponseDTO> getIngredientList(
+    public List<IngredientResponseDto> getIngredientList(
             @RequestParam(name = "page", defaultValue = "0") @PositiveOrZero int page,
             @RequestParam(name = "size", defaultValue = "20") @Positive int size) {
         logger.info("Getting ingredients");
@@ -50,7 +50,7 @@ public class IngredientController {
                 @ApiResponse(responseCode = "404", description = "Ingredient not found")
             })
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")
-    public IngredientResponseDTO getIngredient(
+    public IngredientResponseDto getIngredient(
             @Parameter(description = "Ingredient id", required = true) @PathVariable(name = "id") @Positive Long id) {
         logger.info("Getting ingredients by id {}", id);
         return ingredientService.getIngredientById(id);
@@ -64,9 +64,9 @@ public class IngredientController {
             })
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public CreateEntityResponseDTO createIngredient(
+    public CreateEntityResponseDto createIngredient(
             @Parameter(description = "Properties of Ingredient", required = true) @Valid @RequestBody
-                    IngredientRequestDTO request) {
+                    IngredientRequestDto request) {
         logger.info("Creating ingredient {}", request);
         return ingredientService.createIngredient(request);
     }
@@ -79,10 +79,10 @@ public class IngredientController {
                 @ApiResponse(responseCode = "404", description = "Ingredient not found")
             })
     @RequestMapping(method = RequestMethod.PUT, path = "/{id}")
-    public IngredientResponseDTO updateIngredient(
+    public IngredientResponseDto updateIngredient(
             @Parameter(description = "Ingredient id", required = true) @PathVariable(name = "id") @Positive Long id,
             @Parameter(description = "Properties of the ingredient", required = true) @Valid @RequestBody
-                    IngredientRequestDTO updateRequest) {
+                    IngredientRequestDto updateRequest) {
         logger.info("Updating an ingredient {}", updateRequest);
         return ingredientService.updateIngredient(id, updateRequest);
     }

@@ -2,8 +2,8 @@ package com.abn.amro.utils;
 
 import static java.util.Collections.emptySet;
 
-import com.abn.amro.dto.request.RecipeRequestDTO;
-import com.abn.amro.dto.response.RecipeResponseDTO;
+import com.abn.amro.dto.request.RecipeRequestDto;
+import com.abn.amro.dto.response.RecipeResponseDto;
 import com.abn.amro.model.MealType;
 import com.abn.amro.model.Recipe;
 import java.util.Set;
@@ -18,8 +18,8 @@ public class RecipeTestBuilder {
         return recipe;
     }
 
-    public static RecipeRequestDTO createTestRecipeRequestDTO(String recipeName) {
-        RecipeRequestDTO recipeRequest = new RecipeRequestDTO();
+    public static RecipeRequestDto createTestRecipeRequestDTO(String recipeName) {
+        RecipeRequestDto recipeRequest = new RecipeRequestDto();
         recipeRequest.setName(recipeName);
         recipeRequest.setMealType(MealType.OTHER);
         recipeRequest.setPreparation("Some other instructions");
@@ -27,8 +27,9 @@ public class RecipeTestBuilder {
         recipeRequest.setNumberOfServings(4);
         return recipeRequest;
     }
-    public static RecipeResponseDTO createTestRecipeResponseDTO(String recipeName) {
-        RecipeResponseDTO recipeResponse = new RecipeResponseDTO();
+
+    public static RecipeResponseDto createTestRecipeResponseDTO(String recipeName) {
+        RecipeResponseDto recipeResponse = new RecipeResponseDto();
         recipeResponse.setName(recipeName);
         recipeResponse.setMealType(MealType.OTHER);
         recipeResponse.setPreparation("Some instructions");

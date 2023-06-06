@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class RecipeRequestDTO {
+public class RecipeRequestDto {
     @NotBlank
     @Size(max = 30, message = "Recipe name too long")
     @Schema(description = "The name of the recipe", example = "Lasagne")

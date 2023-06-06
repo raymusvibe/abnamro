@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class IngredientResponseDTO {
-    private Long id;
-    private String ingredient;
+public class GenericResponseDto {
+    private String message;
 }

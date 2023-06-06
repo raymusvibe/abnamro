@@ -13,6 +13,4 @@ public class IngredientControllerUnitTest {
 
     @Autowired
     MockMvc mockMvc;
-
-
 }

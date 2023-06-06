@@ -1,9 +1,8 @@
 package com.abn.amro.dto.request.search;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.util.List;
-
 import jakarta.validation.constraints.NotNull;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,10 +10,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RecipeSearchDTO {
-    @NotNull
-    @Schema(description = "List of search criteria to search on")
-    private List<SearchCriteriaDTO> searchCriteria;
+public class RecipeSearchDto {
+    @NotNull @Schema(description = "List of search criteria to search on")
+    private List<SearchCriteriaDto> searchCriteria;
 
     @Schema(
             description =
