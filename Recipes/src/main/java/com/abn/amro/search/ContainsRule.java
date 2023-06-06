@@ -27,6 +27,9 @@ public class ContainsRule implements SearchRule {
         if (searchCriteria.getFilterKey().equals(FilterKey.ingredient)) {
             return cb.like(cb.lower(joinedRoot.get(searchCriteria.getFilterKey().toString())), "%" + filterValue + "%");
         }
-        return cb.like(cb.lower(recipeRoot.get(searchCriteria.getFilterKey().toString())), "%" + filterValue + "%");
+        return cb.like(
+                cb.lower(
+                        recipeRoot.get(searchCriteria.getFilterKey().toString()).as(String.class)),
+                "%" + filterValue + "%");
     }
 }

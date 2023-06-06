@@ -28,6 +28,9 @@ public class NotEqualRule implements SearchRule {
             return cb.notEqual(
                     cb.lower(joinedRoot.get(searchCriteria.getFilterKey().toString())), filterValue);
         }
-        return cb.notEqual(cb.lower(recipeRoot.get(searchCriteria.getFilterKey().toString())), filterValue);
+        return cb.notEqual(
+                cb.lower(
+                        recipeRoot.get(searchCriteria.getFilterKey().toString()).as(String.class)),
+                filterValue);
     }
 }

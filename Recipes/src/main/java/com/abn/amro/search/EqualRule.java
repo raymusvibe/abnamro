@@ -29,6 +29,9 @@ public class EqualRule implements SearchRule {
             return cb.equal(
                     cb.lower(joinedRoot.get(searchCriteria.getFilterKey().toString())), filterValue);
         }
-        return cb.equal(cb.lower(recipeRoot.get(searchCriteria.getFilterKey().toString())), filterValue);
+        return cb.equal(
+                cb.lower(
+                        recipeRoot.get(searchCriteria.getFilterKey().toString()).as(String.class)),
+                filterValue);
     }
 }

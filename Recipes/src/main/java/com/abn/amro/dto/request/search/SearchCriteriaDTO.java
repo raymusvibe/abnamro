@@ -22,7 +22,6 @@ public class SearchCriteriaDTO {
     private DataOption dataOption;
 
     public SearchCriteriaDTO(FilterKey filterKey, SearchOperation operation, Object value) {
-        super();
         this.filterKey = filterKey;
         this.operation = operation;
         this.value = value;

@@ -15,7 +15,7 @@ public class RecipeSearchDTO {
 
     @Schema(
             description =
-                    "The data option (determines wether to use OR or AND when there is more than one search criteria): ANY or ALL",
+                    "The data option (determines whether to use OR or AND when there are multiple criteria): ANY or ALL",
             example = "ALL")
     private DataOption dataOption;
 }

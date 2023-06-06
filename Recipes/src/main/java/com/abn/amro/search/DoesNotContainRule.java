@@ -28,6 +28,9 @@ public class DoesNotContainRule implements SearchRule {
             return cb.notLike(
                     cb.lower(joinedRoot.get(searchCriteria.getFilterKey().toString())), "%" + filterValue + "%");
         }
-        return cb.notLike(cb.lower(recipeRoot.get(searchCriteria.getFilterKey().toString())), "%" + filterValue + "%");
+        return cb.notLike(
+                cb.lower(
+                        recipeRoot.get(searchCriteria.getFilterKey().toString()).as(String.class)),
+                "%" + filterValue + "%");
     }
 }

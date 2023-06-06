@@ -83,17 +83,18 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public List<RecipeResponseDTO> findBySearchCriteria(RecipeSearchDTO searchRequest, int page, int size) {
-        RecipeSpecificationBuilder builder = new RecipeSpecificationBuilder();
+        RecipeSpecificationBuilder specificationBuilder = new RecipeSpecificationBuilder();
         List<SearchCriteriaDTO> criteriaList = searchRequest.getSearchCriteria();
         if (criteriaList != null) {
-            criteriaList.forEach(x -> {
-                x.setDataOption(searchRequest.getDataOption());
-                builder.with(x);
+            criteriaList.forEach(criteria -> {
+                criteria.setDataOption(searchRequest.getDataOption());
+                specificationBuilder.with(criteria);
             });
         }
         Pageable pageRequest = PageRequest.of(page, size, Sort.by("name").ascending());
-        List<Recipe> searchResult =
-                recipeRepository.findAll(builder.build(), pageRequest).getContent();
+        List<Recipe> searchResult = recipeRepository
+                .findAll(specificationBuilder.build(), pageRequest)
+                .getContent();
         return searchResult.stream().map(this::mapRecipeToResponseDto).toList();
     }
 
