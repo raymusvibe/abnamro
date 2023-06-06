@@ -36,4 +36,8 @@ public class Ingredient {
     @Column
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    public Ingredient(String ingredient) {
+        this.ingredient = ingredient;
+    }
 }

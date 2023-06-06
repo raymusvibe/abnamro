@@ -9,9 +9,9 @@ import java.util.List;
 public interface RecipeService {
     public List<RecipeResponseDTO> getRecipes(int page, int size);
 
-    public CreateEntityResponseDTO createRecipe(RecipeRequestDTO recipe);
+    public CreateEntityResponseDTO createRecipe(RecipeRequestDTO recipeRequest);
 
-    public RecipeResponseDTO updateRecipe(Long recipeId, RecipeRequestDTO recipe);
+    public RecipeResponseDTO updateRecipe(Long recipeId, RecipeRequestDTO recipeRequest);
 
     public void deleteRecipe(Long recipeId);
 

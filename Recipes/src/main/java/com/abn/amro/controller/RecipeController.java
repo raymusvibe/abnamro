@@ -108,13 +108,14 @@ public class RecipeController {
 
     @Operation(
             summary = "Searching recipes using provided criteria",
-            responses = {@ApiResponse(responseCode = "200", description = "Successful search request")})
+            responses = {@ApiResponse(responseCode = "200", description = "Successful search request"),
+                    @ApiResponse(responseCode = "400", description = "Bad request")})
     @RequestMapping(method = RequestMethod.POST, path = "/search")
     public List<RecipeResponseDTO> searchRecipe(
             @RequestParam(name = "page", defaultValue = "0") @PositiveOrZero int page,
             @RequestParam(name = "size", defaultValue = "20") @Positive int size,
             @RequestBody @Valid RecipeSearchDTO searchRequest) {
-        logger.info("Searching recipes using provided criteria");
+        logger.info("Searching recipes using provided criteria {}", searchRequest);
         return recipeService.findBySearchCriteria(searchRequest, page, size);
     }
 }

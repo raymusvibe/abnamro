@@ -3,7 +3,7 @@ package com.abn.amro.dto.request;
 import com.abn.amro.model.MealType;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
-import java.util.List;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +18,7 @@ public class RecipeRequestDTO {
     private String name;
 
     @NotNull @Schema(description = "List of ingredient id's", example = "[1,2]")
-    private List<Long> ingredientIds;
+    private Set<Long> ingredientIds;
 
     @NotBlank
     @Size(max = 255, message = "Instructions too long")

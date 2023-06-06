@@ -1,6 +1,7 @@
 package com.abn.amro.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Set;
 import lombok.Getter;
@@ -23,12 +24,12 @@ public class Recipe {
     @Setter
     private String name;
 
-    @Column
+    @Column(nullable = false)
     @Getter
     @Setter
     private String preparation;
 
-    @Getter
+    @NotNull @Getter
     @Setter
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(

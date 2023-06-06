@@ -104,7 +104,7 @@ public class RecipeServiceImpl implements RecipeService {
                 .orElseThrow(() -> new NotFoundException("Recipe id not found: " + recipeId));
     }
 
-    private Set<Ingredient> getIngredientsByIds(List<Long> ingredientIds) {
+    private Set<Ingredient> getIngredientsByIds(Set<Long> ingredientIds) {
         return ingredientIds.stream().map(this::findIngredientById).collect(Collectors.toSet());
     }
 
