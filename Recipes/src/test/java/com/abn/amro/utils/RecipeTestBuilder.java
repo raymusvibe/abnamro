@@ -16,7 +16,7 @@ public class RecipeTestBuilder {
         Recipe recipe = new Recipe();
         recipe.setName(recipeName);
         recipe.setMealType(MealType.VEGETARIAN);
-        recipe.setPreparation("Some cooking instructions");
+        recipe.setPreparation("Some instructions");
         recipe.setRecipeIngredients(emptySet());
         recipe.setNumberOfServings(3);
         return recipe;

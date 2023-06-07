@@ -44,7 +44,7 @@ public class RecipeServiceIntegrationTest {
     void RecipeService_WhenNoRecipesAdded_EmptyListOfRecipesResponse() {
         List<RecipeResponseDto> recipeResponseDtoList = recipeService.getRecipes(0, 10);
 
-        assertEquals(0, recipeResponseDtoList.size());
+        assertTrue(recipeResponseDtoList.isEmpty());
     }
 
     @Test
@@ -113,6 +113,8 @@ public class RecipeServiceIntegrationTest {
 
     @Test
     void RecipeService_WhenDeleteInvalidRecipe_NotFoundException() {
-        assertThrows(NotFoundException.class, () -> recipeService.deleteRecipe(14L));
+        Long invalidId = 14L;
+
+        assertThrows(NotFoundException.class, () -> recipeService.deleteRecipe(invalidId));
     }
 }

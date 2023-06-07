@@ -90,7 +90,7 @@ public class RecipeControllerUnitTest {
     }
 
     @Test
-    public void RecipeController_WhenInvalidRequest_404Response() throws Exception {
+    public void RecipeController_WhenInvalidRequest_400Response() throws Exception {
         RecipeRequestDto invalidRecipeRequestDTO = RecipeTestBuilder.createTestRecipeRequestDto(null);
 
         mockMvc.perform(post("/api/v1/recipe")
