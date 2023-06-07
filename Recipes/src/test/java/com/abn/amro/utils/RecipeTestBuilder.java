@@ -3,9 +3,12 @@ package com.abn.amro.utils;
 import static java.util.Collections.emptySet;
 
 import com.abn.amro.dto.request.RecipeRequestDto;
+import com.abn.amro.dto.request.search.DataOption;
+import com.abn.amro.dto.request.search.RecipeSearchDto;
 import com.abn.amro.dto.response.RecipeResponseDto;
 import com.abn.amro.model.MealType;
 import com.abn.amro.model.Recipe;
+import java.util.List;
 import java.util.Set;
 
 public class RecipeTestBuilder {
@@ -19,7 +22,7 @@ public class RecipeTestBuilder {
         return recipe;
     }
 
-    public static RecipeRequestDto createTestRecipeRequestDTO(String recipeName) {
+    public static RecipeRequestDto createTestRecipeRequestDto(String recipeName) {
         RecipeRequestDto recipeRequest = new RecipeRequestDto();
         recipeRequest.setName(recipeName);
         recipeRequest.setMealType(MealType.VEGAN);
@@ -29,7 +32,7 @@ public class RecipeTestBuilder {
         return recipeRequest;
     }
 
-    public static RecipeResponseDto createTestRecipeResponseDTO(String recipeName) {
+    public static RecipeResponseDto createTestRecipeResponseDto(String recipeName) {
         RecipeResponseDto recipeResponse = new RecipeResponseDto();
         recipeResponse.setId(1L);
         recipeResponse.setName(recipeName);
@@ -38,5 +41,19 @@ public class RecipeTestBuilder {
         recipeResponse.setRecipeIngredients(emptySet());
         recipeResponse.setNumberOfServings(2);
         return recipeResponse;
+    }
+
+    public static RecipeSearchDto createBlankRecipeSearchDto() {
+        RecipeSearchDto recipeSearchDto = new RecipeSearchDto();
+        recipeSearchDto.setSearchCriteria(List.of());
+        recipeSearchDto.setDataOption(DataOption.ANY);
+        return recipeSearchDto;
+    }
+
+    public static RecipeSearchDto createInvalidRecipeSearchDto() {
+        RecipeSearchDto recipeSearchDto = new RecipeSearchDto();
+        recipeSearchDto.setSearchCriteria(List.of());
+        recipeSearchDto.setDataOption(null);
+        return recipeSearchDto;
     }
 }

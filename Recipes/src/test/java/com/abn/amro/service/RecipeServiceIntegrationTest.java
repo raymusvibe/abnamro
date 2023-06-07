@@ -78,7 +78,7 @@ public class RecipeServiceIntegrationTest {
 
     @Test
     void RecipeService_WhenCreateRecipe_ValidRecipeIdCreated() {
-        RecipeRequestDto recipeRequestDto = RecipeTestBuilder.createTestRecipeRequestDTO("Burger");
+        RecipeRequestDto recipeRequestDto = RecipeTestBuilder.createTestRecipeRequestDto("Burger");
         recipeRequestDto.setIngredientIds(Set.of());
 
         CreateEntityResponseDto createEntityResponseDtoResponseDto = recipeService.createRecipe(recipeRequestDto);
@@ -88,7 +88,7 @@ public class RecipeServiceIntegrationTest {
 
     @Test
     void RecipeService_WhenCreateRecipeWithInvalidIngredients_NotFoundException() {
-        RecipeRequestDto recipeRequestDto = RecipeTestBuilder.createTestRecipeRequestDTO("Burger");
+        RecipeRequestDto recipeRequestDto = RecipeTestBuilder.createTestRecipeRequestDto("Burger");
         recipeRequestDto.setIngredientIds(Set.of(3L));
 
         assertThrows(NotFoundException.class, () -> recipeService.createRecipe(recipeRequestDto));
@@ -100,7 +100,7 @@ public class RecipeServiceIntegrationTest {
         String updatedRecipeName = "Vegan Pizza";
         Recipe recipe = RecipeTestBuilder.createTestRecipe(originalRecipeName);
         Recipe savedRecipe = recipeRepository.save(recipe);
-        RecipeRequestDto recipeRequestDto = RecipeTestBuilder.createTestRecipeRequestDTO(updatedRecipeName);
+        RecipeRequestDto recipeRequestDto = RecipeTestBuilder.createTestRecipeRequestDto(updatedRecipeName);
         recipeRequestDto.setIngredientIds(Set.of());
 
         RecipeResponseDto recipeResponseDto = recipeService.updateRecipe(savedRecipe.getId(), recipeRequestDto);

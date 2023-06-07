@@ -2,8 +2,10 @@ package com.abn.amro.dto.request.search;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class SearchCriteriaDto {
     @Schema(
             description = "The parameter to search: name, numberOfServings, mealType, instructions or ingredient",

@@ -14,6 +14,10 @@ public class RecipeSpecificationBuilder {
         this.parameters = new ArrayList<>();
     }
 
+    public RecipeSpecificationBuilder(List<SearchCriteriaDto> searchCriterionRequests) {
+        this.parameters = searchCriterionRequests;
+    }
+
     public final RecipeSpecificationBuilder with(SearchCriteriaDto searchCriteria) {
         parameters.add(searchCriteria);
         return this;
@@ -24,13 +28,13 @@ public class RecipeSpecificationBuilder {
             return null;
         }
 
-        Specification<Recipe> result = new RecipeSpecification(parameters.get(0));
-        for (int index = 1; index < parameters.size(); index++) {
-            SearchCriteriaDto criteria = parameters.get(index);
-            result = criteria.getDataOption() == DataOption.ALL
-                    ? Specification.where(result).and(new RecipeSpecification(criteria))
-                    : Specification.where(result).or(new RecipeSpecification(criteria));
+        Specification<Recipe> specification = new RecipeSpecification(parameters.get(0));
+        for (int i = 1; i < parameters.size(); i++) {
+            SearchCriteriaDto criteria = parameters.get(i);
+            specification = criteria.getDataOption() == DataOption.ALL
+                    ? Specification.where(specification).and(new RecipeSpecification(criteria))
+                    : Specification.where(specification).or(new RecipeSpecification(criteria));
         }
-        return result;
+        return specification;
     }
 }

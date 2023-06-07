@@ -14,7 +14,7 @@ public class RecipeSearchDto {
     @NotNull @Schema(description = "List of search criteria to search on")
     private List<SearchCriteriaDto> searchCriteria;
 
-    @Schema(
+    @NotNull @Schema(
             description =
                     "The data option (determines whether to use OR or AND when there are multiple criteria): ANY or ALL",
             example = "ALL")
