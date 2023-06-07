@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class SearchCriteriaDto {
+public class SearchCriteriaRequestDto {
     @Schema(
             description = "The parameter to search: name, numberOfServings, mealType, instructions or ingredient",
             example = "mealType")
@@ -23,7 +23,7 @@ public class SearchCriteriaDto {
     @Schema(description = "The data option: ANY or ALL", example = "ALL", hidden = true)
     private DataOption dataOption;
 
-    public SearchCriteriaDto(FilterKey filterKey, SearchOperation operation, Object value) {
+    public SearchCriteriaRequestDto(FilterKey filterKey, SearchOperation operation, Object value) {
         this.filterKey = filterKey;
         this.operation = operation;
         this.value = value;

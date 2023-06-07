@@ -2,7 +2,7 @@ package com.abn.amro.search;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.abn.amro.dto.request.search.SearchCriteriaDto;
+import com.abn.amro.dto.request.search.SearchCriteriaRequestDto;
 import com.abn.amro.model.Recipe;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.data.jpa.domain.Specification;
 
 public class RecipeSpecificationBuilderUnitTest {
-    private List<SearchCriteriaDto> parameters;
+    private List<SearchCriteriaRequestDto> parameters;
 
     @BeforeEach
     void before() {
@@ -28,7 +28,7 @@ public class RecipeSpecificationBuilderUnitTest {
     @Test
     public void RecipeSpecificationBuilder_WhenParamsNotEmpty_SpecificationIsNotPresent() {
         RecipeSpecificationBuilder builder = new RecipeSpecificationBuilder(parameters);
-        SearchCriteriaDto searchCriteria = new SearchCriteriaDto();
+        SearchCriteriaRequestDto searchCriteria = new SearchCriteriaRequestDto();
         parameters.add(searchCriteria);
         Specification<Recipe> specification = builder.build();
         assertNotNull(specification);

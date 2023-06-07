@@ -4,15 +4,15 @@ import static java.util.Collections.emptySet;
 
 import com.abn.amro.dto.request.RecipeRequestDto;
 import com.abn.amro.dto.request.search.DataOption;
-import com.abn.amro.dto.request.search.RecipeSearchDto;
+import com.abn.amro.dto.request.search.RecipeSearchRequestDto;
 import com.abn.amro.dto.response.RecipeResponseDto;
 import com.abn.amro.model.MealType;
 import com.abn.amro.model.Recipe;
 import java.util.List;
 import java.util.Set;
 
-public class RecipeTestBuilder {
-    public static Recipe createTestRecipe(String recipeName) {
+public class RecipeTestObjectBuilder {
+    public static Recipe createTestRecipeWithName(String recipeName) {
         Recipe recipe = new Recipe();
         recipe.setName(recipeName);
         recipe.setMealType(MealType.VEGETARIAN);
@@ -22,12 +22,12 @@ public class RecipeTestBuilder {
         return recipe;
     }
 
-    public static RecipeRequestDto createTestRecipeRequestDto(String recipeName) {
+    public static RecipeRequestDto createTestRecipeRequestDtoWithName(String recipeName) {
         RecipeRequestDto recipeRequest = new RecipeRequestDto();
         recipeRequest.setName(recipeName);
         recipeRequest.setMealType(MealType.VEGAN);
         recipeRequest.setPreparation("Some other instructions");
-        recipeRequest.setIngredientIds(Set.of(1L));
+        recipeRequest.setIngredientIds(Set.of());
         recipeRequest.setNumberOfServings(4);
         return recipeRequest;
     }
@@ -43,15 +43,15 @@ public class RecipeTestBuilder {
         return recipeResponse;
     }
 
-    public static RecipeSearchDto createBlankRecipeSearchDto() {
-        RecipeSearchDto recipeSearchDto = new RecipeSearchDto();
+    public static RecipeSearchRequestDto createBlankTestRecipeSearchRequestDto() {
+        RecipeSearchRequestDto recipeSearchDto = new RecipeSearchRequestDto();
         recipeSearchDto.setSearchCriteria(List.of());
         recipeSearchDto.setDataOption(DataOption.ANY);
         return recipeSearchDto;
     }
 
-    public static RecipeSearchDto createInvalidRecipeSearchDto() {
-        RecipeSearchDto recipeSearchDto = new RecipeSearchDto();
+    public static RecipeSearchRequestDto createInvalidTestRecipeSearchRequestDto() {
+        RecipeSearchRequestDto recipeSearchDto = new RecipeSearchRequestDto();
         recipeSearchDto.setSearchCriteria(List.of());
         recipeSearchDto.setDataOption(null);
         return recipeSearchDto;

@@ -1,6 +1,6 @@
 package com.abn.amro.search;
 
-import com.abn.amro.dto.request.search.SearchCriteriaDto;
+import com.abn.amro.dto.request.search.SearchCriteriaRequestDto;
 import com.abn.amro.model.Ingredient;
 import com.abn.amro.model.Recipe;
 import com.abn.amro.search.abstractions.SearchRule;
@@ -10,10 +10,10 @@ import java.util.List;
 import org.springframework.data.jpa.domain.Specification;
 
 public class RecipeSpecification implements Specification<Recipe> {
-    private final SearchCriteriaDto searchCriteria;
+    private final SearchCriteriaRequestDto searchCriteria;
     private static final List<SearchRule> searchRules = new ArrayList<>();
 
-    public RecipeSpecification(SearchCriteriaDto searchCriteria) {
+    public RecipeSpecification(SearchCriteriaRequestDto searchCriteria) {
         this.searchCriteria = searchCriteria;
         populateRuleList();
     }

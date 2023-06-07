@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RecipeSearchDto {
+public class RecipeSearchRequestDto {
     @NotNull @Schema(description = "List of search criteria to search on")
-    private List<SearchCriteriaDto> searchCriteria;
+    private List<SearchCriteriaRequestDto> searchCriteria;
 
     @NotNull @Schema(
             description =

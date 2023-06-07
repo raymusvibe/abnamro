@@ -8,11 +8,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.abn.amro.dto.request.RecipeRequestDto;
-import com.abn.amro.dto.request.search.RecipeSearchDto;
+import com.abn.amro.dto.request.search.RecipeSearchRequestDto;
 import com.abn.amro.dto.response.CreateEntityResponseDto;
 import com.abn.amro.dto.response.RecipeResponseDto;
 import com.abn.amro.service.abstractions.RecipeService;
-import com.abn.amro.utils.RecipeTestBuilder;
+import com.abn.amro.utils.RecipeTestObjectBuilder;
 import com.abn.amro.utils.UtilityConvertor;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -34,7 +34,7 @@ public class RecipeControllerUnitTest {
 
     @Test
     public void RecipeController_WhenGetRecipes_ListResponseIsCorrect() throws Exception {
-        RecipeResponseDto recipeDTO = RecipeTestBuilder.createTestRecipeResponseDto("Rendang");
+        RecipeResponseDto recipeDTO = RecipeTestObjectBuilder.createTestRecipeResponseDto("Rendang");
         List<RecipeResponseDto> recipesDTOList = List.of(recipeDTO);
         Mockito.when(recipeService.getRecipes(anyInt(), anyInt())).thenReturn(recipesDTOList);
 
@@ -49,7 +49,7 @@ public class RecipeControllerUnitTest {
 
     @Test
     public void RecipeController_WhenGetRecipeById_ResponseMatches() throws Exception {
-        RecipeResponseDto recipeDTO = RecipeTestBuilder.createTestRecipeResponseDto("Sushi");
+        RecipeResponseDto recipeDTO = RecipeTestObjectBuilder.createTestRecipeResponseDto("Sushi");
         Mockito.when(recipeService.getRecipeById(1L)).thenReturn(recipeDTO);
 
         MvcResult result = mockMvc.perform(get("/api/v1/recipe/1"))
@@ -62,7 +62,7 @@ public class RecipeControllerUnitTest {
 
     @Test
     public void RecipeController_WhenCreateRecipe_201Response() throws Exception {
-        RecipeRequestDto recipeRequestDTO = RecipeTestBuilder.createTestRecipeRequestDto("Meatloaf");
+        RecipeRequestDto recipeRequestDTO = RecipeTestObjectBuilder.createTestRecipeRequestDtoWithName("Meatloaf");
         Mockito.when(recipeService.createRecipe(any())).thenReturn(new CreateEntityResponseDto(1L));
 
         MvcResult result = mockMvc.perform(post("/api/v1/recipe")
@@ -78,8 +78,8 @@ public class RecipeControllerUnitTest {
 
     @Test
     public void RecipeController_WhenUpdateRecipe_200Response() throws Exception {
-        RecipeResponseDto recipeResponseDTO = RecipeTestBuilder.createTestRecipeResponseDto("Sushi");
-        RecipeRequestDto recipeRequestDTO = RecipeTestBuilder.createTestRecipeRequestDto("Sushi");
+        RecipeResponseDto recipeResponseDTO = RecipeTestObjectBuilder.createTestRecipeResponseDto("Sushi");
+        RecipeRequestDto recipeRequestDTO = RecipeTestObjectBuilder.createTestRecipeRequestDtoWithName("Sushi");
         Mockito.when(recipeService.updateRecipe(anyLong(), any())).thenReturn(recipeResponseDTO);
 
         mockMvc.perform(put("/api/v1/recipe/1")
@@ -91,7 +91,7 @@ public class RecipeControllerUnitTest {
 
     @Test
     public void RecipeController_WhenInvalidRequest_400Response() throws Exception {
-        RecipeRequestDto invalidRecipeRequestDTO = RecipeTestBuilder.createTestRecipeRequestDto(null);
+        RecipeRequestDto invalidRecipeRequestDTO = RecipeTestObjectBuilder.createTestRecipeRequestDtoWithName(null);
 
         mockMvc.perform(post("/api/v1/recipe")
                         .content(UtilityConvertor.convertToJson(invalidRecipeRequestDTO))
@@ -109,7 +109,7 @@ public class RecipeControllerUnitTest {
 
     @Test
     public void RecipeController_ValidSearchRequest_200Response() throws Exception {
-        RecipeSearchDto recipeSearchDto = RecipeTestBuilder.createBlankRecipeSearchDto();
+        RecipeSearchRequestDto recipeSearchDto = RecipeTestObjectBuilder.createBlankTestRecipeSearchRequestDto();
 
         MvcResult result = mockMvc.perform(post("/api/v1/recipe/search")
                         .content(UtilityConvertor.convertToJson(recipeSearchDto))
@@ -124,7 +124,8 @@ public class RecipeControllerUnitTest {
 
     @Test
     public void RecipeController_InvalidSearchRequest_400Response() throws Exception {
-        RecipeSearchDto invalidRecipeSearchDto = RecipeTestBuilder.createInvalidRecipeSearchDto();
+        RecipeSearchRequestDto invalidRecipeSearchDto =
+                RecipeTestObjectBuilder.createInvalidTestRecipeSearchRequestDto();
 
         mockMvc.perform(post("/api/v1/recipe/search")
                         .content(UtilityConvertor.convertToJson(invalidRecipeSearchDto))

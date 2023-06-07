@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.abn.amro.model.Recipe;
-import com.abn.amro.utils.RecipeTestBuilder;
+import com.abn.amro.utils.RecipeTestObjectBuilder;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class RecipeRepositoryTest {
     @Test
     void RecipeRepository_WhenRecipeSaved_CanBeRetrieved() {
         String recipeName = "Beef stew";
-        Recipe recipe = RecipeTestBuilder.createTestRecipe(recipeName);
+        Recipe recipe = RecipeTestObjectBuilder.createTestRecipeWithName(recipeName);
 
         Recipe saveRecipe = recipeRepository.save(recipe);
 
@@ -36,8 +36,8 @@ public class RecipeRepositoryTest {
     void RecipeRepository_WhenMultipleRecipesSaved_ListCanBeRetrieved() {
         String firstRecipeName = "Beef stew";
         String secondRecipeName = "Lamb stew";
-        Recipe firstRecipe = RecipeTestBuilder.createTestRecipe(firstRecipeName);
-        Recipe secondRecipe = RecipeTestBuilder.createTestRecipe(secondRecipeName);
+        Recipe firstRecipe = RecipeTestObjectBuilder.createTestRecipeWithName(firstRecipeName);
+        Recipe secondRecipe = RecipeTestObjectBuilder.createTestRecipeWithName(secondRecipeName);
 
         recipeRepository.save(firstRecipe);
         recipeRepository.save(secondRecipe);

@@ -1,7 +1,7 @@
 package com.abn.amro.controller;
 
 import com.abn.amro.dto.request.RecipeRequestDto;
-import com.abn.amro.dto.request.search.RecipeSearchDto;
+import com.abn.amro.dto.request.search.RecipeSearchRequestDto;
 import com.abn.amro.dto.response.CreateEntityResponseDto;
 import com.abn.amro.dto.response.RecipeResponseDto;
 import com.abn.amro.service.abstractions.RecipeService;
@@ -116,7 +116,7 @@ public class RecipeController {
     public List<RecipeResponseDto> searchRecipe(
             @RequestParam(name = "page", defaultValue = "0") @PositiveOrZero int page,
             @RequestParam(name = "size", defaultValue = "20") @Positive int size,
-            @RequestBody @Valid RecipeSearchDto searchRequest) {
+            @RequestBody @Valid RecipeSearchRequestDto searchRequest) {
         logger.info("Searching recipes using provided criteria {}", searchRequest);
         return recipeService.findBySearchCriteria(searchRequest, page, size);
     }
