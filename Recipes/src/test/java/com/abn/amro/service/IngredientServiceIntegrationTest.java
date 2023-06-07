@@ -20,7 +20,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 @DataJpaTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class IngredientServiceIntegrationTest {
+class IngredientServiceIntegrationTest {
     @Autowired
     private IngredientRepository ingredientRepository;
 
@@ -67,7 +67,7 @@ public class IngredientServiceIntegrationTest {
 
         IngredientResponseDto ingredientResponseDto = ingredientService.getIngredientById(savedIngredient.getId());
 
-        assertEquals(ingredient.getIngredient(), ingredientResponseDto.getIngredient());
+        assertEquals(ingredient.getIngredientName(), ingredientResponseDto.getIngredientName());
     }
 
     @Test
@@ -91,7 +91,7 @@ public class IngredientServiceIntegrationTest {
         IngredientResponseDto ingredientResponseDto =
                 ingredientService.updateIngredient(savedIngredient.getId(), ingredientRequestDto);
 
-        assertEquals(updatedIngredientName, ingredientResponseDto.getIngredient());
+        assertEquals(updatedIngredientName, ingredientResponseDto.getIngredientName());
     }
 
     @Test

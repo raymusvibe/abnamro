@@ -10,7 +10,8 @@ import java.util.List;
 import org.springframework.data.jpa.domain.Specification;
 
 public class RecipeSpecification implements Specification<Recipe> {
-    private final SearchCriteriaRequestDto searchCriteria;
+    private final transient SearchCriteriaRequestDto searchCriteria;
+
     private static final List<SearchRule> searchRules = new ArrayList<>();
 
     public RecipeSpecification(SearchCriteriaRequestDto searchCriteria) {

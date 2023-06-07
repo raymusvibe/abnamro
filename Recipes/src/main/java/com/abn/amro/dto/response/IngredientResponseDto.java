@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @Data
 public class IngredientResponseDto {
     private Long id;
-    private String ingredient;
+    private String ingredientName;
 }

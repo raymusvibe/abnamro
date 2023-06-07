@@ -23,7 +23,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 @DataJpaTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class RecipeServiceIntegrationTest {
+class RecipeServiceIntegrationTest {
     @Autowired
     private RecipeRepository recipeRepository;
 
@@ -150,7 +150,7 @@ public class RecipeServiceIntegrationTest {
         recipeService.createRecipe(secondRecipeRequest);
         RecipeSearchRequestDto recipeSearchDto = RecipeTestObjectBuilder.createBlankTestRecipeSearchRequestDto();
         SearchCriteriaRequestDto searchCriteriaDto =
-                new SearchCriteriaRequestDto(FilterKey.name, SearchOperation.CONTAINS, filterValue);
+                new SearchCriteriaRequestDto("name", SearchOperation.CONTAINS, filterValue);
         recipeSearchDto.setSearchCriteria(List.of(searchCriteriaDto));
 
         List<RecipeResponseDto> recipeResponseDtoList = recipeService.findBySearchCriteria(recipeSearchDto, 0, 10);
@@ -174,7 +174,7 @@ public class RecipeServiceIntegrationTest {
         recipeService.createRecipe(secondRecipeRequest);
         RecipeSearchRequestDto recipeSearchDto = RecipeTestObjectBuilder.createBlankTestRecipeSearchRequestDto();
         SearchCriteriaRequestDto searchCriteriaDto =
-                new SearchCriteriaRequestDto(FilterKey.mealType, SearchOperation.DOES_NOT_CONTAIN, filterValue);
+                new SearchCriteriaRequestDto("mealType", SearchOperation.DOES_NOT_CONTAIN, filterValue);
         recipeSearchDto.setSearchCriteria(List.of(searchCriteriaDto));
 
         List<RecipeResponseDto> recipeResponseDtoList = recipeService.findBySearchCriteria(recipeSearchDto, 0, 10);
@@ -200,7 +200,7 @@ public class RecipeServiceIntegrationTest {
         recipeService.createRecipe(secondRecipeRequest);
         RecipeSearchRequestDto recipeSearchDto = RecipeTestObjectBuilder.createBlankTestRecipeSearchRequestDto();
         SearchCriteriaRequestDto searchCriteriaDto =
-                new SearchCriteriaRequestDto(FilterKey.numberOfServings, SearchOperation.EQUAL, filterValue);
+                new SearchCriteriaRequestDto("numberOfServings", SearchOperation.EQUAL, filterValue);
         recipeSearchDto.setSearchCriteria(List.of(searchCriteriaDto));
 
         List<RecipeResponseDto> recipeResponseDtoList = recipeService.findBySearchCriteria(recipeSearchDto, 0, 10);
@@ -223,7 +223,7 @@ public class RecipeServiceIntegrationTest {
         recipeService.createRecipe(secondRecipeRequest);
         RecipeSearchRequestDto recipeSearchDto = RecipeTestObjectBuilder.createBlankTestRecipeSearchRequestDto();
         SearchCriteriaRequestDto searchCriteriaDto =
-                new SearchCriteriaRequestDto(FilterKey.ingredient, SearchOperation.NOT_EQUAL, filterValue);
+                new SearchCriteriaRequestDto("ingredientName", SearchOperation.NOT_EQUAL, filterValue);
         recipeSearchDto.setSearchCriteria(List.of(searchCriteriaDto));
 
         List<RecipeResponseDto> recipeResponseDtoList = recipeService.findBySearchCriteria(recipeSearchDto, 0, 10);
@@ -248,9 +248,9 @@ public class RecipeServiceIntegrationTest {
         RecipeSearchRequestDto recipeSearchDto = RecipeTestObjectBuilder.createBlankTestRecipeSearchRequestDto();
         recipeSearchDto.setDataOption(DataOption.ALL);
         SearchCriteriaRequestDto firstSearchCriteriaDto =
-                new SearchCriteriaRequestDto(FilterKey.name, SearchOperation.CONTAINS, firstFilterValue);
+                new SearchCriteriaRequestDto("name", SearchOperation.CONTAINS, firstFilterValue);
         SearchCriteriaRequestDto secondSearchCriteriaDto =
-                new SearchCriteriaRequestDto(FilterKey.numberOfServings, SearchOperation.EQUAL, secondFilterValue);
+                new SearchCriteriaRequestDto("numberOfServings", SearchOperation.EQUAL, secondFilterValue);
         recipeSearchDto.setSearchCriteria(List.of(firstSearchCriteriaDto, secondSearchCriteriaDto));
 
         List<RecipeResponseDto> recipeResponseDtoList = recipeService.findBySearchCriteria(recipeSearchDto, 0, 10);

@@ -44,7 +44,7 @@ public class IngredientServiceImpl implements IngredientService {
     @Override
     public IngredientResponseDto updateIngredient(Long ingredientId, IngredientRequestDto ingredientDTO) {
         Ingredient ingredient = findIngredientById(ingredientId);
-        ingredient.setIngredient(ingredientDTO.getIngredient());
+        ingredient.setIngredientName(ingredientDTO.getIngredientName());
         Ingredient savedIngredient = ingredientRepository.save(ingredient);
         return mapIngredientToResponseDto(savedIngredient);
     }
@@ -60,7 +60,7 @@ public class IngredientServiceImpl implements IngredientService {
     @Override
     public IngredientResponseDto getIngredientById(Long ingredientId) {
         Ingredient ingredient = findIngredientById(ingredientId);
-        return new IngredientResponseDto(ingredientId, ingredient.getIngredient());
+        return new IngredientResponseDto(ingredientId, ingredient.getIngredientName());
     }
 
     private IngredientResponseDto mapIngredientToResponseDto(Ingredient ingredient) {

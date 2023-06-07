@@ -21,7 +21,7 @@ public class Ingredient {
     @Getter
     @Setter
     @Column(nullable = false, unique = true)
-    private String ingredient;
+    private String ingredientName;
 
     @Getter
     @ManyToMany(
@@ -37,7 +37,7 @@ public class Ingredient {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    public Ingredient(String ingredient) {
-        this.ingredient = ingredient;
+    public Ingredient(String ingredientName) {
+        this.ingredientName = ingredientName;
     }
 }

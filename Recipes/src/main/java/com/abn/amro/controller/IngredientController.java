@@ -35,7 +35,7 @@ public class IngredientController {
             summary = "List ingredients",
             description = "Get paged list of ingredients",
             responses = {@ApiResponse(responseCode = "200")})
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public List<IngredientResponseDto> getIngredientList(
             @RequestParam(name = "page", defaultValue = "0") @PositiveOrZero int page,
             @RequestParam(name = "size", defaultValue = "20") @Positive int size) {
@@ -49,7 +49,7 @@ public class IngredientController {
                 @ApiResponse(responseCode = "200", description = "Operation successful"),
                 @ApiResponse(responseCode = "404", description = "Ingredient not found")
             })
-    @RequestMapping(method = RequestMethod.GET, path = "/{id}")
+    @GetMapping(path = "/{id}")
     public IngredientResponseDto getIngredient(
             @Parameter(description = "Ingredient id", required = true) @PathVariable(name = "id") @Positive Long id) {
         logger.info("Getting ingredients by id {}", id);
@@ -62,7 +62,7 @@ public class IngredientController {
                 @ApiResponse(responseCode = "201", description = "Operation successful"),
                 @ApiResponse(responseCode = "400", description = "Bad request")
             })
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CreateEntityResponseDto createIngredient(
             @Parameter(description = "Properties of Ingredient", required = true) @Valid @RequestBody
@@ -78,7 +78,7 @@ public class IngredientController {
                 @ApiResponse(responseCode = "400", description = "Bad request"),
                 @ApiResponse(responseCode = "404", description = "Ingredient not found")
             })
-    @RequestMapping(method = RequestMethod.PUT, path = "/{id}")
+    @PutMapping(path = "/{id}")
     public IngredientResponseDto updateIngredient(
             @Parameter(description = "Ingredient id", required = true) @PathVariable(name = "id") @Positive Long id,
             @Parameter(description = "Properties of the ingredient", required = true) @Valid @RequestBody
@@ -94,7 +94,7 @@ public class IngredientController {
                 @ApiResponse(responseCode = "400", description = "Bad request"),
                 @ApiResponse(responseCode = "404", description = "Ingredient not found")
             })
-    @RequestMapping(method = RequestMethod.DELETE, path = "/{id}")
+    @DeleteMapping(path = "/{id}")
     public void deleteIngredient(
             @Parameter(description = "Ingredient id", required = true) @PathVariable(name = "id") @Positive Long id) {
         logger.info("Deleting ingredient by id: {}", id);

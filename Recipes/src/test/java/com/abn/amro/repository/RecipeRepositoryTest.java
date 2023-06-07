@@ -11,13 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 @DataJpaTest
-public class RecipeRepositoryTest {
+class RecipeRepositoryTest {
 
     @Autowired
     private RecipeRepository recipeRepository;
 
     @AfterEach
-    public void after() {
+    void after() {
         recipeRepository.deleteAll();
     }
 

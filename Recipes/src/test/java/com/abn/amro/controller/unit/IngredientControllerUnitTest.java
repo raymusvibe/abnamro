@@ -1,4 +1,4 @@
-package com.abn.amro.controller;
+package com.abn.amro.controller.unit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.*;
@@ -6,6 +6,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.abn.amro.controller.IngredientController;
 import com.abn.amro.dto.request.IngredientRequestDto;
 import com.abn.amro.dto.response.CreateEntityResponseDto;
 import com.abn.amro.dto.response.IngredientResponseDto;
@@ -22,7 +23,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 @WebMvcTest(IngredientController.class)
-public class IngredientControllerUnitTest {
+class IngredientControllerUnitTest {
     @MockBean
     IngredientService ingredientService;
 
@@ -30,7 +31,7 @@ public class IngredientControllerUnitTest {
     MockMvc mockMvc;
 
     @Test
-    public void IngredientController_WhenGetIngredients_ListSizeResponseCorrect() throws Exception {
+    void IngredientController_WhenGetIngredients_ListSizeResponseCorrect() throws Exception {
         IngredientResponseDto firstIngredientResponseDto = new IngredientResponseDto(1L, "vegetables");
         IngredientResponseDto secondIngredientResponseDto = new IngredientResponseDto(1L, "salsa");
         List<IngredientResponseDto> ingredientResponseDtoList =
@@ -47,7 +48,7 @@ public class IngredientControllerUnitTest {
     }
 
     @Test
-    public void IngredientController_WhenGetIngredientById_ResponseMatches() throws Exception {
+    void IngredientController_WhenGetIngredientById_ResponseMatches() throws Exception {
         IngredientResponseDto ingredientResponseDto = new IngredientResponseDto(1L, "tomato");
         Mockito.when(ingredientService.getIngredientById(anyLong())).thenReturn(ingredientResponseDto);
 
@@ -57,11 +58,11 @@ public class IngredientControllerUnitTest {
 
         IngredientResponseDto fetchedIngredientResponseDto =
                 UtilityConvertor.getResponse(result, IngredientResponseDto.class);
-        assertEquals(ingredientResponseDto.getIngredient(), fetchedIngredientResponseDto.getIngredient());
+        assertEquals(ingredientResponseDto.getIngredientName(), fetchedIngredientResponseDto.getIngredientName());
     }
 
     @Test
-    public void IngredientController_WhenCreateIngredient_201Response() throws Exception {
+    void IngredientController_WhenCreateIngredient_201Response() throws Exception {
         IngredientResponseDto ingredientResponseDto = new IngredientResponseDto(1L, "fish");
         Mockito.when(ingredientService.createIngredient(any())).thenReturn(new CreateEntityResponseDto(1L));
 
@@ -77,7 +78,7 @@ public class IngredientControllerUnitTest {
     }
 
     @Test
-    public void IngredientController_WhenUpdateIngredient_200Response() throws Exception {
+    void IngredientController_WhenUpdateIngredient_200Response() throws Exception {
         IngredientRequestDto ingredientRequestDto = new IngredientRequestDto("eggs");
         IngredientResponseDto ingredientResponseDto = new IngredientResponseDto(1L, "eggs");
         Mockito.when(ingredientService.updateIngredient(anyLong(), any())).thenReturn(ingredientResponseDto);
@@ -90,7 +91,7 @@ public class IngredientControllerUnitTest {
     }
 
     @Test
-    public void IngredientController_WhenInvalidRequest_404Response() throws Exception {
+    void IngredientController_WhenInvalidRequest_404Response() throws Exception {
         IngredientRequestDto invalidIngredientRequestDto = new IngredientRequestDto(null);
 
         mockMvc.perform(post("/api/v1/ingredient")
@@ -101,7 +102,7 @@ public class IngredientControllerUnitTest {
     }
 
     @Test
-    public void IngredientController_WhenDeleteIngredient_200Response() throws Exception {
+    void IngredientController_WhenDeleteIngredient_200Response() throws Exception {
         doNothing().when(ingredientService).deleteIngredient(anyLong());
 
         mockMvc.perform(delete("/api/v1/ingredient/1"))

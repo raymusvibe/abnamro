@@ -14,5 +14,5 @@ public class IngredientRequestDto {
     @NotBlank
     @Size(max = 30, message = "Ingredient name too long")
     @Schema(description = "The name of the ingredient", example = "Eggs")
-    private String ingredient;
+    private String ingredientName;
 }

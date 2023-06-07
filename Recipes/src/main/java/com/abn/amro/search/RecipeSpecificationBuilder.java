@@ -24,7 +24,7 @@ public class RecipeSpecificationBuilder {
     }
 
     public Specification<Recipe> build() {
-        if (parameters.size() == 0) {
+        if (parameters.isEmpty()) {
             return null;
         }
 

@@ -10,12 +10,12 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.dao.DataIntegrityViolationException;
 
 @DataJpaTest
-public class IngredientRepositoryTest {
+class IngredientRepositoryTest {
     @Autowired
     private IngredientRepository ingredientRepository;
 
     @BeforeEach
-    public void before() {
+    void before() {
         ingredientRepository.deleteAll();
     }
 
@@ -27,11 +27,11 @@ public class IngredientRepositoryTest {
         Ingredient savedIngredient = ingredientRepository.save(newIngredient);
 
         assertNotNull(savedIngredient);
-        assert (savedIngredient.getIngredient()).equals(ingredient);
+        assert (savedIngredient.getIngredientName()).equals(ingredient);
     }
 
     @Test
-    public void IngredientRepository_WhenMultipleIngredientsSaved_CanBeRetrieved() {
+    void IngredientRepository_WhenMultipleIngredientsSaved_CanBeRetrieved() {
         String firstIngredientName = "salsa";
         String secondIngredientName = "tomato";
         Ingredient firstIngredient = new Ingredient(firstIngredientName);
@@ -44,7 +44,7 @@ public class IngredientRepositoryTest {
     }
 
     @Test
-    public void IngredientRepository_WhenSameIngredientName_DataIntegrityViolationException() {
+    void IngredientRepository_WhenSameIngredientName_DataIntegrityViolationException() {
         String ingredient = "tomato";
         Ingredient firstIngredient = new Ingredient(ingredient);
         Ingredient secondIngredient = new Ingredient(ingredient);

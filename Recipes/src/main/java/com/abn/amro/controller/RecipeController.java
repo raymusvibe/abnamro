@@ -39,7 +39,7 @@ public class RecipeController {
                 @ApiResponse(responseCode = "200"),
                 @ApiResponse(responseCode = "400", description = "Bad request"),
             })
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public List<RecipeResponseDto> getRecipes(
             @RequestParam(name = "page", defaultValue = "0") @PositiveOrZero int page,
             @RequestParam(name = "size", defaultValue = "20") @Positive int size) {
@@ -54,7 +54,7 @@ public class RecipeController {
                 @ApiResponse(responseCode = "400", description = "Bad request"),
                 @ApiResponse(responseCode = "404", description = "Recipe not found")
             })
-    @RequestMapping(method = RequestMethod.GET, path = "/{id}")
+    @GetMapping(path = "/{id}")
     public RecipeResponseDto getRecipe(
             @Parameter(description = "Recipe id", required = true) @PathVariable(name = "id") @Positive Long id) {
         logger.info("Getting recipe by id {}", id);
@@ -67,7 +67,7 @@ public class RecipeController {
                 @ApiResponse(responseCode = "201", description = "Recipe created"),
                 @ApiResponse(responseCode = "400", description = "Bad request")
             })
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CreateEntityResponseDto createRecipe(
             @Parameter(description = "Properties of new recipe", required = true) @Valid @RequestBody
@@ -83,7 +83,7 @@ public class RecipeController {
                 @ApiResponse(responseCode = "400", description = "Bad request"),
                 @ApiResponse(responseCode = "404", description = "Recipe not found")
             })
-    @RequestMapping(method = RequestMethod.PUT, path = "/{id}")
+    @PutMapping(path = "/{id}")
     public RecipeResponseDto updateRecipe(
             @Parameter(description = "Recipe id", required = true) @PathVariable(name = "id") @Positive Long id,
             @Parameter(description = "Properties of the recipe", required = true) @Valid @RequestBody
@@ -99,7 +99,7 @@ public class RecipeController {
                 @ApiResponse(responseCode = "400", description = "Bad request"),
                 @ApiResponse(responseCode = "404", description = "Recipe not found")
             })
-    @RequestMapping(method = RequestMethod.DELETE, path = "/{id}")
+    @DeleteMapping(path = "/{id}")
     public void deleteRecipe(
             @Parameter(description = "Recipe id", required = true) @PathVariable(name = "id") @Positive Long id) {
         logger.info("Deleting a recipe with id {}", id);
@@ -112,7 +112,7 @@ public class RecipeController {
                 @ApiResponse(responseCode = "200", description = "Successful search request"),
                 @ApiResponse(responseCode = "400", description = "Bad request")
             })
-    @RequestMapping(method = RequestMethod.POST, path = "/search")
+    @PostMapping(path = "/search")
     public List<RecipeResponseDto> searchRecipe(
             @RequestParam(name = "page", defaultValue = "0") @PositiveOrZero int page,
             @RequestParam(name = "size", defaultValue = "20") @Positive int size,

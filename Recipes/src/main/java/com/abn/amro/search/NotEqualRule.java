@@ -23,16 +23,15 @@ public class NotEqualRule implements SearchRule {
             String filterValue,
             Root<Recipe> recipeRoot,
             Join<Recipe, Ingredient> joinedRoot) {
-        switch (searchCriteria.getFilterKey()) {
-            case ingredient:
-                return cb.notEqual(
-                        cb.lower(joinedRoot.get(searchCriteria.getFilterKey().toString())), filterValue);
-            default:
-                return cb.notEqual(
-                        cb.lower(recipeRoot
-                                .get(searchCriteria.getFilterKey().toString())
-                                .as(String.class)),
-                        filterValue);
+        if (searchCriteria.getFilterKey().equals("ingredientName")) {
+            return cb.notEqual(
+                    cb.lower(joinedRoot.get(searchCriteria.getFilterKey().toString())), filterValue);
+        } else {
+            return cb.notEqual(
+                    cb.lower(recipeRoot
+                            .get(searchCriteria.getFilterKey().toString())
+                            .as(String.class)),
+                    filterValue);
         }
     }
 }

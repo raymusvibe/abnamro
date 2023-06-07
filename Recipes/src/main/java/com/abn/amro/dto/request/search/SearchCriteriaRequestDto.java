@@ -1,17 +1,20 @@
 package com.abn.amro.dto.request.search;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 public class SearchCriteriaRequestDto {
+    @NotBlank
     @Schema(
             description = "The parameter to search: name, numberOfServings, mealType, instructions or ingredient",
             example = "mealType")
-    private FilterKey filterKey;
+    private String filterKey;
 
+    @NotBlank
     @Schema(description = "The filter value to match with in the search", example = "VEGETARIAN")
     private Object value;
 
@@ -23,7 +26,7 @@ public class SearchCriteriaRequestDto {
     @Schema(description = "The data option: ANY or ALL", example = "ALL", hidden = true)
     private DataOption dataOption;
 
-    public SearchCriteriaRequestDto(FilterKey filterKey, SearchOperation operation, Object value) {
+    public SearchCriteriaRequestDto(String filterKey, SearchOperation operation, Object value) {
         this.filterKey = filterKey;
         this.operation = operation;
         this.value = value;
