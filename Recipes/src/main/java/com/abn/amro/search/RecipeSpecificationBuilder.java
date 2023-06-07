@@ -1,9 +1,7 @@
 package com.abn.amro.search;
 
 import com.abn.amro.dto.request.search.DataOption;
-import com.abn.amro.dto.request.search.FilterKey;
 import com.abn.amro.dto.request.search.SearchCriteriaDto;
-import com.abn.amro.dto.request.search.SearchOperation;
 import com.abn.amro.model.Recipe;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +12,6 @@ public class RecipeSpecificationBuilder {
 
     public RecipeSpecificationBuilder() {
         this.parameters = new ArrayList<>();
-    }
-
-    public final RecipeSpecificationBuilder with(FilterKey key, SearchOperation operation, Object value) {
-        parameters.add(new SearchCriteriaDto(key, operation, value));
-        return this;
     }
 
     public final RecipeSpecificationBuilder with(SearchCriteriaDto searchCriteria) {

@@ -71,7 +71,7 @@ public class RecipeControllerUnitTest {
 
         CreateEntityResponseDto createEntityResponseDTO =
                 UtilityConvertor.getResponse(result, CreateEntityResponseDto.class);
-        assertEquals(createEntityResponseDTO.getId(), 1L);
+        assertEquals(1L, createEntityResponseDTO.getId());
     }
 
     @Test
@@ -89,11 +89,10 @@ public class RecipeControllerUnitTest {
 
     @Test
     public void RecipeController_WhenInvalidRequest_404Response() throws Exception {
-        RecipeRequestDto recipeRequestDTO = RecipeTestBuilder.createTestRecipeRequestDTO("Burgers");
-        recipeRequestDTO.setName(null);
+        RecipeRequestDto invalidRecipeRequestDTO = RecipeTestBuilder.createTestRecipeRequestDTO(null);
 
         mockMvc.perform(post("/api/v1/recipe")
-                        .content(UtilityConvertor.convertToJson(recipeRequestDTO))
+                        .content(UtilityConvertor.convertToJson(invalidRecipeRequestDTO))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
                 .andReturn();

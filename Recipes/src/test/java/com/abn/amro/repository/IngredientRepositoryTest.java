@@ -3,6 +3,7 @@ package com.abn.amro.repository;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.abn.amro.model.Ingredient;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -12,6 +13,11 @@ import org.springframework.dao.DataIntegrityViolationException;
 public class IngredientRepositoryTest {
     @Autowired
     private IngredientRepository ingredientRepository;
+
+    @BeforeEach
+    public void before() {
+        ingredientRepository.deleteAll();
+    }
 
     @Test
     void IngredientRepository_WhenIngredientSaved_CanBeRetrieved() {
