@@ -9,7 +9,7 @@
         <relativePath/>
     </parent>
     <groupId>com.abn.amro</groupId>
-    <artifactId>recipes</artifactId>
+    <artifactId>recipes-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Recipes</name>
     <description>Recipes-API</description>

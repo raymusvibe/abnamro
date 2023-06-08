@@ -109,7 +109,7 @@ class RecipeControllerUnitTest {
     }
 
     @Test
-    void RecipeController_ValidSearchRequest_200Response() throws Exception {
+    void RecipeController_WhenValidSearchRequest_200Response() throws Exception {
         RecipeSearchRequestDto recipeSearchDto = RecipeTestObjectBuilder.createBlankTestRecipeSearchRequestDto();
 
         MvcResult result = mockMvc.perform(post("/api/v1/recipe/search")
@@ -124,7 +124,7 @@ class RecipeControllerUnitTest {
     }
 
     @Test
-    void RecipeController_InvalidSearchRequest_400Response() throws Exception {
+    void RecipeController_WhenInvalidSearchRequest_400Response() throws Exception {
         RecipeSearchRequestDto invalidRecipeSearchDto =
                 RecipeTestObjectBuilder.createInvalidTestRecipeSearchRequestDto();
 

@@ -51,7 +51,7 @@ public class RecipeControllerIntegrationTest {
     }
 
     @Test
-    void RecipeController_ListRecipes_GetsCorrectRecipesFromDatabase() {
+    void RecipeController_WhenListRecipes_GetsCorrectRecipesFromDatabase() {
         Recipe recipe = RecipeTestObjectBuilder.createTestRecipeWithName("Sushi");
         List<Recipe> recipeList = List.of(recipe);
         recipeRepository.saveAll(recipeList);
@@ -62,7 +62,7 @@ public class RecipeControllerIntegrationTest {
     }
 
     @Test
-    void RecipeController_GetRecipeById_ResponseMatches() {
+    void RecipeController_WhenGetRecipeById_ResponseMatches() {
         Recipe recipe = RecipeTestObjectBuilder.createTestRecipeWithName("Rendang");
         Recipe savedRecipe = recipeRepository.save(recipe);
 
@@ -86,7 +86,7 @@ public class RecipeControllerIntegrationTest {
     }
 
     @Test
-    void RecipeController_GetRecipeByInvalidId_NotFoundException() {
+    void RecipeController_WhenGetRecipeByInvalidId_NotFoundException() {
         Long invalidId = 34L;
 
         assertThrows(
@@ -117,7 +117,7 @@ public class RecipeControllerIntegrationTest {
     }
 
     @Test
-    void RecipeController_MultipleSearchCriteria_ReturnMatchingRecords() {
+    void RecipeController_WhenMultipleSearchCriteria_ReturnMatchingRecords() {
         String firstFilterValue = "Stamppot";
         int secondFilterValue = 3;
         Recipe firstRecipeRequest = RecipeTestObjectBuilder.createTestRecipeWithName("Stamppot");
