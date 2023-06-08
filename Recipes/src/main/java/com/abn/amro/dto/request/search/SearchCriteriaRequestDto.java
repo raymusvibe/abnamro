@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class SearchCriteriaRequestDto {
     @NotBlank
     @Schema(
-            description = "The parameter to search: name, numberOfServings, mealType, instructions or ingredient",
+            description = "The parameter to search: name, numberOfServings, mealType, instructions or ingredientName",
             example = "mealType")
     private String filterKey;
 
