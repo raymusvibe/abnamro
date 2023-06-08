@@ -22,7 +22,8 @@ An API providing a CRUD and search interface for Recipes.
 
 ## How to run SonarQube analysis
 
-```./mvnw clean verify sonar:sonar \
+```
+./mvnw clean verify sonar:sonar \
 -Dsonar.projectKey=Recipes \
 -Dsonar.projectName='Recipes' \
 -Dsonar.host.url=http://localhost:9000 \
