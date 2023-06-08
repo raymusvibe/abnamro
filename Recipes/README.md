@@ -1,4 +1,4 @@
-# Recipes Application
+# Recipes API
 
 An API providing a CRUD and search interface for Recipes.
 
@@ -8,11 +8,11 @@ An API providing a CRUD and search interface for Recipes.
 - [Maven 3](https://maven.apache.org/download.cgi),
 - [SonarQube](https://www.sonarsource.com/) (if you want to run code analysis)
 
-## How to run maven-spotless for code formatting
+## How to run maven-spotless for code formatting (in the terminal)
 
 ```./mvnw spotless:apply```
 
-## How to build the project (in the terminal)
+## How to build the project
 
 ```./mvnw package```
 
@@ -84,7 +84,7 @@ Carl Mapada, for the [medium article](https://medium.com/@cmmapada/advanced-sear
 
 - Add grafana and prometheus for application monitoring and visualisation
 - Add Eureka service discovery and an API gateway for external traffic
-- Standalone database
+- Standalone database, instead of in-memory database
 - Flyway database migration support
 
 ## Code coverage and results of static code analysis
