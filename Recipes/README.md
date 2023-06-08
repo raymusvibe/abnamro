@@ -67,7 +67,7 @@ Carl Mapada, for the [medium article](https://medium.com/@cmmapada/advanced-sear
 - Standalone database
 - Flyway database migration support
 
-## Test code coverage
+## Code coverage and results of static code analysis
 - Jacoco reports that 96% of classes are covered, and 91% of lines
 - SonarQube reports no major issues or code smells
 
