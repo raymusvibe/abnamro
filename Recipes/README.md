@@ -60,11 +60,14 @@ Carl Mapada, for the [medium article](https://medium.com/@cmmapada/advanced-sear
 
 ## Areas for additional development not reached due to time
 
-- Additional integration test
+- Additional integration tests
 - Run the application through docker
 - Add grafana and prometheus
+- Add Eureka service discovery and an API gateway for external traffic
 - Standalone database
+- Flyway database migration support
 
 ## Test code coverage
 - Jacoco reports that 96% of classes are covered, and 91% of lines
+- SonarQube reports no major issues or code smells
 
