@@ -57,7 +57,9 @@ class IngredientServiceIntegrationTest {
 
     @Test
     void IngredientService_WhenGetInvalidIngredientById_NotFoundException() {
-        assertThrows(NotFoundException.class, () -> ingredientService.getIngredientById(1L));
+        Long invalidId = 34L;
+
+        assertThrows(NotFoundException.class, () -> ingredientService.getIngredientById(invalidId));
     }
 
     @Test
