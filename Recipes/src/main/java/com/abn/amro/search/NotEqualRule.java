@@ -18,17 +18,19 @@ public class NotEqualRule implements SearchRule {
 
     @Override
     public Predicate applyRule(
-            CriteriaBuilder cb,
+            CriteriaBuilder criteriaBuilder,
             SearchCriteriaRequestDto searchCriteria,
             String filterValue,
             Root<Recipe> recipeRoot,
             Join<Recipe, Ingredient> joinedRoot) {
         if (searchCriteria.getFilterKey().equals("ingredientName")) {
-            return cb.notEqual(
-                    cb.lower(joinedRoot.get(searchCriteria.getFilterKey().toString())), filterValue);
+            return criteriaBuilder.notEqual(
+                    criteriaBuilder.lower(
+                            joinedRoot.get(searchCriteria.getFilterKey().toString())),
+                    filterValue);
         } else {
-            return cb.notEqual(
-                    cb.lower(recipeRoot
+            return criteriaBuilder.notEqual(
+                    criteriaBuilder.lower(recipeRoot
                             .get(searchCriteria.getFilterKey().toString())
                             .as(String.class)),
                     filterValue);

@@ -19,17 +19,19 @@ public class EqualRule implements SearchRule {
 
     @Override
     public Predicate applyRule(
-            CriteriaBuilder cb,
+            CriteriaBuilder criteriaBuilder,
             SearchCriteriaRequestDto searchCriteria,
             String filterValue,
             Root<Recipe> recipeRoot,
             Join<Recipe, Ingredient> joinedRoot) {
         if (searchCriteria.getFilterKey().equals("ingredientName")) {
-            return cb.equal(
-                    cb.lower(joinedRoot.get(searchCriteria.getFilterKey().toString())), filterValue);
+            return criteriaBuilder.equal(
+                    criteriaBuilder.lower(
+                            joinedRoot.get(searchCriteria.getFilterKey().toString())),
+                    filterValue);
         } else {
-            return cb.equal(
-                    cb.lower(recipeRoot
+            return criteriaBuilder.equal(
+                    criteriaBuilder.lower(recipeRoot
                             .get(searchCriteria.getFilterKey().toString())
                             .as(String.class)),
                     filterValue);
