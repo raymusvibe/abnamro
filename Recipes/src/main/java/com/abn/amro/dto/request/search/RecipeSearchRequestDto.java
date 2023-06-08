@@ -3,13 +3,11 @@ package com.abn.amro.dto.request.search;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import java.util.List;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class RecipeSearchRequestDto {
     @NotNull @Schema(description = "List of search criteria to search on")
     private List<SearchCriteriaRequestDto> searchCriteria;

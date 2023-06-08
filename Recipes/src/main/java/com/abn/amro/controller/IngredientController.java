@@ -26,10 +26,11 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "Ingredient Controller", description = "Create, read, update, delete operations for ingredients")
 @Validated
 public class IngredientController {
-    private final Logger logger = LoggerFactory.getLogger(IngredientController.class);
 
     @Autowired
     private IngredientService ingredientService;
+
+    private final Logger logger = LoggerFactory.getLogger(IngredientController.class);
 
     @Operation(
             summary = "List ingredients",

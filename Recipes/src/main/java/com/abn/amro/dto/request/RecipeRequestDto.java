@@ -4,12 +4,10 @@ import com.abn.amro.model.MealType;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 import java.util.Set;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Data
 public class RecipeRequestDto {
     @NotBlank
@@ -22,7 +20,7 @@ public class RecipeRequestDto {
 
     @NotBlank
     @Size(max = 255, message = "Instructions too long")
-    @Schema(description = "Instructions for preparing the dish", example = "Fry the meat for 35 minutes.")
+    @Schema(description = "Instructions for preparing the dish", example = "Fry the vegetables for 5 minutes.")
     private String preparation;
 
     @Positive @Schema(description = "Number of servings for the meal", example = "4")
