@@ -1,5 +1,6 @@
 package com.abn.amro.search;
 
+import com.abn.amro.config.DatabaseConfig;
 import com.abn.amro.dto.request.search.SearchCriteriaRequestDto;
 import com.abn.amro.model.Ingredient;
 import com.abn.amro.model.Recipe;
@@ -22,7 +23,7 @@ public class RecipeSpecification implements Specification<Recipe> {
     @Override
     public Predicate toPredicate(Root<Recipe> recipeRoot, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
         String filterValue = searchCriteria.getValue().toString().toLowerCase();
-        Join<Recipe, Ingredient> joinedRoot = recipeRoot.join("recipeIngredients", JoinType.INNER);
+        Join<Recipe, Ingredient> joinedRoot = recipeRoot.join(DatabaseConfig.INGREDIENTS_JOIN_TABLE_NAME);
         return searchRules.stream()
                 .filter(searchRule -> searchRule.canRuleBeApplied(searchCriteria.getOperation()))
                 .findFirst()

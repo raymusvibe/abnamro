@@ -1,5 +1,6 @@
 package com.abn.amro.search;
 
+import com.abn.amro.config.DatabaseConfig;
 import com.abn.amro.dto.request.search.SearchCriteriaRequestDto;
 import com.abn.amro.dto.request.search.SearchOperation;
 import com.abn.amro.model.Ingredient;
@@ -24,7 +25,7 @@ public class EqualRule implements SearchRule {
             String filterValue,
             Root<Recipe> recipeRoot,
             Join<Recipe, Ingredient> joinedRoot) {
-        if (searchCriteria.getFilterKey().equals("ingredientName")) {
+        if (searchCriteria.getFilterKey().equals(DatabaseConfig.INGREDIENTS_COLUMN_NAME)) {
             return criteriaBuilder.equal(
                     criteriaBuilder.lower(
                             joinedRoot.get(searchCriteria.getFilterKey().toString())),

@@ -71,7 +71,7 @@ Once the application is running, a [swagger interface](http://localhost:8080/swa
 
 ## Acknowledgments
 
-Carl Mapada, for the [medium article](https://medium.com/@cmmapada/advanced-search-and-filtering-using-spring-data-jpa-specification-and-criteria-api-b6e8f891f2bf) on advanced search and filtering with Spring data.
+- Carl Mapada, for the [medium article](https://medium.com/@cmmapada/advanced-search-and-filtering-using-spring-data-jpa-specification-and-criteria-api-b6e8f891f2bf) on advanced search and filtering with Spring data.
 
 ## Architectural choices
 
