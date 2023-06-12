@@ -11,10 +11,9 @@ import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 
-public class NotEqualRule implements SearchRule {
-    @Override
-    public boolean canRuleBeApplied(SearchOperation operation) {
-        return operation == SearchOperation.NOT_EQUAL;
+public class NotEqualRule extends SearchRule {
+    public NotEqualRule() {
+        this.searchOperationForRule = SearchOperation.NOT_EQUAL;
     }
 
     @Override

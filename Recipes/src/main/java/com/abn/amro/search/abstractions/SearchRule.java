@@ -9,10 +9,14 @@ import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 
-public interface SearchRule {
-    public boolean canRuleBeApplied(SearchOperation operation);
+public abstract class SearchRule {
+    protected SearchOperation searchOperationForRule;
 
-    public Predicate applyRule(
+    public boolean canRuleBeApplied(SearchOperation operation) {
+        return searchOperationForRule == operation;
+    }
+
+    public abstract Predicate applyRule(
             CriteriaBuilder cb,
             SearchCriteriaRequestDto searchCriteria,
             String filterValue,

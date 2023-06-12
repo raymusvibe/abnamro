@@ -11,11 +11,10 @@ import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 
-public class EqualRule implements SearchRule {
+public class EqualRule extends SearchRule {
 
-    @Override
-    public boolean canRuleBeApplied(SearchOperation operation) {
-        return operation == SearchOperation.EQUAL;
+    public EqualRule() {
+        this.searchOperationForRule = SearchOperation.EQUAL;
     }
 
     @Override
