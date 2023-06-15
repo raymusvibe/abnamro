@@ -1,7 +1,7 @@
 package com.abn.amro.dto.request.search;
 
 public enum SearchOperation {
-    CONTAINS,
+    CONTAIN,
     DOES_NOT_CONTAIN,
     EQUAL,
     NOT_EQUAL;

@@ -128,7 +128,7 @@ public class RecipeControllerIntegrationTest {
         RecipeSearchRequestDto recipeSearchDto = RecipeTestObjectBuilder.createBlankTestRecipeSearchRequestDto();
         recipeSearchDto.setDataOption(DataOption.ALL);
         SearchCriteriaRequestDto firstSearchCriteriaDto =
-                new SearchCriteriaRequestDto("name", SearchOperation.CONTAINS, firstFilterValue);
+                new SearchCriteriaRequestDto("name", SearchOperation.CONTAIN, firstFilterValue);
         SearchCriteriaRequestDto secondSearchCriteriaDto =
                 new SearchCriteriaRequestDto("numberOfServings", SearchOperation.EQUAL, secondFilterValue);
         recipeSearchDto.setSearchCriteria(List.of(firstSearchCriteriaDto, secondSearchCriteriaDto));

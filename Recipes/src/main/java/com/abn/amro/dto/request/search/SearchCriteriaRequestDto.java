@@ -19,8 +19,8 @@ public class SearchCriteriaRequestDto {
     private Object value;
 
     @Schema(
-            description = "The search operation to perform: CONTAINS, DOES_NOT_CONTAIN, EQUAL or NOT_EQUAL",
-            example = "CONTAINS")
+            description = "The search operation to perform: CONTAIN, DOES_NOT_CONTAIN, EQUAL or NOT_EQUAL",
+            example = "CONTAIN")
     private SearchOperation operation;
 
     @Schema(description = "The data option: ANY or ALL", example = "ALL", hidden = true)

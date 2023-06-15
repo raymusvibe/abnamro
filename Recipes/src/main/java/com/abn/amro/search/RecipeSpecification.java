@@ -33,7 +33,7 @@ public class RecipeSpecification implements Specification<Recipe> {
     }
 
     private void populateRuleList() {
-        searchRules.add(new ContainsRule());
+        searchRules.add(new ContainRule());
         searchRules.add(new DoesNotContainRule());
         searchRules.add(new EqualRule());
         searchRules.add(new NotEqualRule());

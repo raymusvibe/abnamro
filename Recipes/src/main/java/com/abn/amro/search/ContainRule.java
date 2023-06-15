@@ -11,9 +11,9 @@ import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 
-public class ContainsRule extends SearchRule {
-    public ContainsRule() {
-        this.searchOperationForRule = SearchOperation.CONTAINS;
+public class ContainRule extends SearchRule {
+    public ContainRule() {
+        this.searchOperationForRule = SearchOperation.CONTAIN;
     }
 
     @Override
